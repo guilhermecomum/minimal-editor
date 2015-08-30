@@ -15,3 +15,18 @@ function setStyle(style) {
     document.designMode = "off";
   }
 }
+
+Mousetrap.bind('mod+b', function(e) {
+  e.preventDefault();
+  setStyle("bold");
+});
+
+Mousetrap.bind('mod+i', function(e) {
+  e.preventDefault();
+  setStyle("italic");
+});
+
+Mousetrap.bind('mod+u', function(e) {
+  e.preventDefault();
+  setStyle("underline");
+});
