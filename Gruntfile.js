@@ -9,7 +9,7 @@ module.exports = function(grunt) {
     uglify: {
       all: {
         files: {
-          'public/js/main.min.js': ['assets/js/main.js','assets/js/mousetrap.js']
+          'public/js/main.min.js': ['assets/js/mousetrap.js','assets/js/main.js']
         }
       }
     },
