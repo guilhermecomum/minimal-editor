@@ -1,33 +1,53 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    min: {
-      dist: {
-	src: ['assets/js/main.js'],
-	dest: 'public/js/all.min.js'
+
+    jshint: {
+      files: ['Gruntfile.js', 'assets/js/main.js']
+    },
+
+    uglify: {
+      all: {
+        files: {
+          'public/js/main.min.js': ['assets/js/main.js','assets/js/mousetrap.js']
+        }
       }
     },
-    jshint: {
-      all: ['assets/**/*.js']
-    },
+
     compass: {
-      dist: {
+      dev: {
 	options: {
 	  sassDir: 'assets/sass',
-	  cssDir: 'public/css'
+	  cssDir: 'public/css',
+          environment: 'development'
+	}
+      },
+      prod: {
+        options: {
+	  sassDir: 'assets/sass',
+	  cssDir: 'public/css',
+          environment: 'production'
 	}
       }
     },
+
     watch: {
-      css: {
-	files: '**/*.sass',
-	tasks: ['compass']
+      compass: {
+	files: ['**/*.sass'],
+	tasks: ['compass:dev']
+      },
+      js: {
+	files: ['assets/**/*.js'],
+	tasks: ['uglify']
       }
     }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default',['watch']);
+  grunt.registerTask('default', ['compass:dev','jshint','uglify','watch']);
+  grunt.registerTask('prod', ['compass:prod']);
 };
