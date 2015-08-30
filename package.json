@@ -1,0 +1,30 @@
+{
+  "name": "minimal-editor",
+  "version": "1.0.0",
+  "description": "A simple and minimal text editor",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/guilhermecomum/minimal-editor.git"
+  },
+  "keywords": [
+    "node",
+    "editor"
+  ],
+  "author": "Guilherme Guerra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guilhermecomum/minimal-editor/issues"
+  },
+  "homepage": "https://github.com/guilhermecomum/minimal-editor#readme",
+  "dependencies": {
+    "ejs": "^2.3.3",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "^1.0.3",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
