@@ -1,4 +1,4 @@
-function setStyle(style) {
+function setStyle(style, param) {
   var range, sel;
 
   if (window.getSelection) {
@@ -11,7 +11,7 @@ function setStyle(style) {
       sel.removeAllRanges();
       sel.addRange(range);
     }
-    document.execCommand(style, false, null);
+    document.execCommand(style, false, param);
     document.designMode = "off";
   }
 }
@@ -30,3 +30,20 @@ Mousetrap.bind('mod+u', function(e) {
   e.preventDefault();
   setStyle("underline");
 });
+
+function addImage(e) {
+  e.stopPropagation();
+  e.preventDefault();
+
+  var file = e.dataTransfer.files[0],
+      reader = new FileReader();
+
+  reader.onload = function (event) {
+    setStyle("insertImage", event.target.result);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+var pad = document.getElementById('pad');
+pad.addEventListener('drop', addImage, false);
