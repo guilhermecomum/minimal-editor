@@ -20,7 +20,7 @@ npm install
 
 After this run grunt to generate static files
 ```
-grunt
+grunt build
 ```
 
 Start server with
