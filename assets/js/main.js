@@ -41,7 +41,7 @@
         reader = new FileReader();
 
     reader.onload = function (event) {
-      setStyle("insertImage", event.target.result);
+      e.target.innerHTML = "<img src=" + event.target.result + " >";
     };
 
     reader.readAsDataURL(file);
