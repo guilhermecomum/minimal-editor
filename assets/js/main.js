@@ -41,7 +41,9 @@
         reader = new FileReader();
 
     reader.onload = function (event) {
-      e.target.innerHTML = "<img src=" + event.target.result + " >";
+      var newImage = document.createElement('span');
+      newImage.innerHTML = "<img src=" + event.target.result + " >";
+      e.target.appendChild(newImage);
     };
 
     reader.readAsDataURL(file);
