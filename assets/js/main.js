@@ -36,14 +36,26 @@
   function addImage(e) {
     e.stopPropagation();
     e.preventDefault();
+    x = e.clientX;
+    y = e.clientY;
 
     var file = e.dataTransfer.files[0],
         reader = new FileReader();
 
     reader.onload = function (event) {
-      var newImage = document.createElement('span');
-      newImage.innerHTML = "<img src=" + event.target.result + " >";
-      e.target.appendChild(newImage);
+      var dataURI = event.target.result;
+      var img = document.createElement("img");
+      img.src = dataURI;
+      if (document.caretPositionFromPoint) {
+        var pos = document.caretPositionFromPoint(x, y);
+        range = document.createRange();
+        range.setStart(pos.offsetNode, pos.offset);
+        range.collapse();
+        range.insertNode(img);
+      }else if (document.caretRangeFromPoint) {
+        range = document.caretRangeFromPoint(x, y);
+        range.insertNode(img);
+      }
     };
 
     reader.readAsDataURL(file);
